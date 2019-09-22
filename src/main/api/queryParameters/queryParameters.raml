@@ -1,0 +1,45 @@
+#%RAML 1.0 Trait
+queryParameters:
+  
+  check_in:
+    type: date-only
+    displayName: checkindate
+    description: checkindate of the customer
+    example: 2019-02-11
+    required: true
+  check_out:
+    type: date-only
+    displayName: chechoutDate
+    description: chechoutDate of the customer
+    example: 2019-02-11
+    required: true  
+  language:
+    type: string
+    displayName: language
+    example: en
+    required: true       
+  limit:
+    type: number
+    displayName: 2
+    example: 2
+    required: false       
+  token:
+    type: string
+    displayName: token
+    example: fd46bb93029b8e8e7b09a237d1d805db
+    required: true
+  type:
+    type: string
+    displayName: type
+    example: popularity
+    required: true  
+  id:
+    type: number
+    displayName: id
+    example: 1243
+    required: true  
+  currency:
+    type: string
+    displayName: currency
+    example: usa
+    required: true    

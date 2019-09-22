@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:dw="http://www.mulesoft.org/schema/mule/ee/dw" xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns:tracking="http://www.mulesoft.org/schema/mule/ee/tracking" xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:spring="http://www.springframework.org/schema/beans" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-current.xsd
+http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/ee/tracking http://www.mulesoft.org/schema/mule/ee/tracking/current/mule-tracking-ee.xsd
+http://www.mulesoft.org/schema/mule/ee/dw http://www.mulesoft.org/schema/mule/ee/dw/current/dw.xsd">
+    <flow name="getHotels">
+        <dw:transform-message doc:name="query params">
+            <dw:set-variable variableName="queryparams"><![CDATA[%dw 1.0
+%output application/java
+---
+inboundProperties.'http.query.params']]></dw:set-variable>
+        </dw:transform-message>
+        <http:request config-ref="HTTP_Request_Configuration" path="${http.path}" method="${http.method}" doc:name="HTTP">
+            <http:request-builder>
+                <http:query-param paramName="currency" value="#[flowVars.queryparams.currency]"/>
+                <http:query-param paramName="language" value="#[flowVars.queryparams.language]"/>
+                <http:query-param paramName="id" value="#[flowVars.queryparams.id]"/>
+                <http:query-param paramName="type" value="#[flowVars.queryparams.type]"/>
+                <http:query-param paramName="token" value="#[flowVars.queryparams.token]"/>
+                <http:query-param paramName="check_in" value="#[flowVars.queryparams.check_in]"/>
+                <http:query-param paramName="check_out" value="#[flowVars.queryparams.check_out]"/>
+                <http:query-param paramName="limit" value="#[flowVars.queryparams.limit]"/>
+            </http:request-builder>
+        </http:request>
+        <dw:transform-message doc:name="Transform Message">
+            <dw:set-payload><![CDATA[%dw 1.0
+%output application/json skipNullOn = "everywhere"
+
+
+---
+{
+Hotel_Details: payload.popularity map ( hotel , indexOfhotel) ->
+{
+	"NameOfTheHotel": hotel.name,
+	"Id": hotel.hotel_id,
+	"HotelType" : hotel.stars ++ "-STAR",
+	"rating": hotel.rating,
+	"amenities" :{
+		      "wifi" :"Available" when (hotel.has_wifi == true ) otherwise "NotAvailable"
+	             }
+}}]]></dw:set-payload>
+        </dw:transform-message>
+    </flow>
+</mule>

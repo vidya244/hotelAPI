@@ -1,0 +1,128 @@
+{
+	"info": {
+		"_postman_id": "cfcc4e01-571c-4096-954e-6c5799539ae4",
+		"name": "hotal",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://yasen.hotellook.com/tp/public/widget_location_dump.json?currency=usd&language=en&id=12209&type=popularity&token=fd46bb93029b8e8e7b09a237d1d805db",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://yasen.hotellook.com/tp/public/widget_location_dump.json?currency=usd&language=en&limit=20&id=12209&type=popularity&token=fd46bb93029b8e8e7b09a237d1d805db",
+					"protocol": "http",
+					"host": [
+						"yasen",
+						"hotellook",
+						"com"
+					],
+					"path": [
+						"tp",
+						"public",
+						"widget_location_dump.json"
+					],
+					"query": [
+						{
+							"key": "currency",
+							"value": "usd"
+						},
+						{
+							"key": "language",
+							"value": "en"
+						},
+						{
+							"key": "limit",
+							"value": "20"
+						},
+						{
+							"key": "id",
+							"value": "12209"
+						},
+						{
+							"key": "type",
+							"value": "popularity"
+						},
+						{
+							"key": "check_in",
+							"value": "2017-02-02",
+							"disabled": true
+						},
+						{
+							"key": "check_out",
+							"value": "2017-02-17",
+							"disabled": true
+						},
+						{
+							"key": "token",
+							"value": "fd46bb93029b8e8e7b09a237d1d805db"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8082/api/hotalsearch?CheckInDate=2019-02-01&CheckOutDate=2019-02-01&NoOfCustomers=2&Location=bangalore&RoomType=single",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8082/api/hotalsearch?currency=usd&language=en&limit=5&id=12209&type=popularity&check_in=2017-02-02&check_out=2017-02-17&token=fd46bb93029b8e8e7b09a237d1d805db",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"api",
+						"hotalsearch"
+					],
+					"query": [
+						{
+							"key": "currency",
+							"value": "usd"
+						},
+						{
+							"key": "language",
+							"value": "en"
+						},
+						{
+							"key": "limit",
+							"value": "5"
+						},
+						{
+							"key": "id",
+							"value": "12209"
+						},
+						{
+							"key": "type",
+							"value": "popularity"
+						},
+						{
+							"key": "check_in",
+							"value": "2017-02-02"
+						},
+						{
+							"key": "check_out",
+							"value": "2017-02-17"
+						},
+						{
+							"key": "token",
+							"value": "fd46bb93029b8e8e7b09a237d1d805db"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

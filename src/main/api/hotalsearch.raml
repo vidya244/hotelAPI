@@ -1,0 +1,20 @@
+#%RAML 1.0
+baseUri: https://anypoint.mulesoft.com/mocking/api/v1/links/40c3f6cb-1742-4143-97cc-5cb10bc7997c/ # 
+title: hotalsearch
+
+### TRAITS ####
+traits:
+  q-parameter: !include /queryParameters/queryParameters.raml
+
+
+
+/hotalsearch:
+  get:
+    is: [q-parameter]
+      
+    responses:
+      200:
+        body:
+          application/json:
+            example: !include example/output.json
+         
